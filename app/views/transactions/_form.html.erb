@@ -1,0 +1,46 @@
+<%= form_with model: @transaction, local: true do |form| %>
+
+  <% if @transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@transaction.errors.count, "error") %> prohibited
+        this transaction from being saved:
+      </h2>
+      <ul>
+        <% @transaction.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :payment_method %><br>
+    <%= form.text_field :payment_method %>
+  </p>
+
+  <p>
+    <%= form.label :amount %><br>
+    <%= form.text_field :amount %>
+  </p>
+
+  <p>
+    <%= form.label :submit_date %><br>
+    <%= form.date_field :submit_date %>
+  </p>
+
+  <p>
+    <%= form.label :status %><br>
+    <%= form.select :status, ["completed","pending","automatic","manual"] %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>

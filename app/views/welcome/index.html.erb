@@ -1,0 +1,63 @@
+<h1>Finance Manager</h1>
+<%= link_to 'Transactions', controller: 'transactions' %>
+
+<h2>Upcoming manual transactions</h2>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Name</th>
+    <th>Amount</th>
+    <th>Payment Method</th>
+    <th></th>
+  </tr>
+  <% @upcoming_manual_transactions.each do |transaction| %>
+    <tr>
+      <td><%= transaction.submit_date.strftime("%b %d") %></td>
+      <td><%= transaction.name %></td>
+      <td align="right"><%= number_to_currency(transaction.amount) %></td>
+      <td><%= transaction.payment_method %></td>
+      <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h2>Upcoming automatic transactions</h2>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Name</th>
+    <th>Amount</th>
+    <th>Payment Method</th>
+    <th></th>
+  </tr>
+  <% @upcoming_automatic_transactions.each do |transaction| %>
+    <tr>
+      <td><%= transaction.submit_date.strftime("%b %d") %></td>
+      <td><%= transaction.name %></td>
+      <td align="right"><%= number_to_currency(transaction.amount) %></td>
+      <td><%= transaction.payment_method %></td>
+      <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h2>Pending transactions</h2>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Name</th>
+    <th>Amount</th>
+    <th>Payment Method</th>
+    <th></th>
+  </tr>
+  <% @pending_transactions.each do |transaction| %>
+    <tr>
+      <td><%= transaction.submit_date.strftime("%b %d") %></td>
+      <td><%= transaction.name %></td>
+      <td align="right"><%= number_to_currency(transaction.amount) %></td>
+      <td><%= transaction.payment_method %></td>
+      <td><%= link_to 'Complete', complete_transaction_path(transaction) %></td>
+      <!--td><%= link_to 'Delete', transaction_path(transaction), method: :delete, data: { confirm: 'Are you sure?' } %></td-->
+    </tr>
+  <% end %>
+</table>
